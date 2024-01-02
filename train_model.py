@@ -2,11 +2,24 @@ import pandas as pd
 from src.feature_extraction import create_vectorizer, extract_features
 from src.model_training import train_model
 import pickle
+from src.preprocessing import preprocess_text
 
 
 def main():
-    # Load your processed dataset
-    data_path = 'data/processed_data/processed_dataset.csv'  # assuming csv file for now.......
+    # Load the raw dataset
+    # assuming csv files.......
+    data_path = 'data/raw_data/raw_dataset.csv'
+    df = pd.read_csv(data_path)
+
+    # Preprocess your dataset
+    df['text'] = df['text'].apply(preprocess_text)
+
+    # Save your processed dataset
+    df.to_csv('data/processed_data/processed_dataset.csv', index=False)
+
+    # Load the processed dataset
+    # assuming csv files.......
+    data_path = 'data/processed_data/processed_dataset.csv'
     df = pd.read_csv(data_path)
 
     # Assuming 'text' column for features and 'label' column for labels.........
