@@ -7,7 +7,7 @@ from src.preprocessing import preprocess_text
 
 def main():
     # Load the raw dataset
-    # assuming csv files.......
+    # assuming csv files..
     data_path = 'data/raw_data/raw_dataset.csv'
     df = pd.read_csv(data_path)
 
@@ -22,7 +22,7 @@ def main():
     data_path = 'data/processed_data/processed_dataset.csv'
     df = pd.read_csv(data_path)
 
-    # Assuming 'text' column for features and 'label' column for labels.........
+    # Assuming 'text' column for features and 'label' column for labels.
     X = df['text']
     y = df['label']
 
