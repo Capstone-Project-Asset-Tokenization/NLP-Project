@@ -6,4 +6,5 @@ def create_vectorizer():
 
 
 def extract_features(corpus, vectorizer):
+    corpus = corpus.fillna("")
     return vectorizer.fit_transform(corpus)
