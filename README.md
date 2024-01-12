@@ -12,3 +12,11 @@ This project detects hate speech in Amharic text using machine learning.
 
 ## Usage
 After running the application, input Amharic text into the GUI to check for hate speech.
+
+## Contributors
+1.  Gemechis Urgessa
+2.  Getnet Adugna
+3.  Jebessa Dejene
+4.  Petros Beyene
+5.  Zeamanual Feleke
+6.  Ephrem Alemayeh
