@@ -134,19 +134,23 @@ def stop_word_removal(words, stop_words_file):
 
 # Initialize AmharicTextProcessor with the path to your short forms file and stop words file
 pre_processor = AmharicTextProcessor('data/short_form_with_meanings.txt')
-stop_words_file = 'data\stop_words.txt'
+stop_words_file = 'data/stop_words.txt'
 
 # Path to your CSV files
 input_csv_file = 'data/raw_data/raw_dataset.csv'
 output_csv_file = 'data/processed_data/processed_dataset.csv'
-bigram_dir = 'data'
+bigram_dir = 'data/bigrams.txt'
 
 # Read the CSV file
 df = pd.read_csv(input_csv_file)
 
 def preprocess_text(text):
     # Tokenize the text
+    print("Original:", text)
     tokens = pre_processor.tokenize(text)
+
+    print("Tokenized:", tokens)
+
 
     # Expand short forms in each token
     tokens = [pre_processor.expand_short_form(token) for token in tokens]
@@ -167,14 +171,15 @@ def preprocess_text(text):
     tokens = stop_word_removal(tokens, stop_words_file)
 
     # Reconstruct the text
+    preprocessed_text = ' '.join(tokens)
+    print("Preprocessed:", preprocessed_text)
     return ' '.join(tokens)
 
 
-
-
 # Apply preprocessing to each text entry
-# Assuming the column containing text is named 'text'
 df['preprocessed_text'] = df['text'].apply(preprocess_text)
 
+df_preprocessed = df[['preprocessed_text', 'label']]
+
 # Save the preprocessed data to a new CSV file
-df.to_csv(output_csv_file, index=False)
+df_preprocessed.to_csv(output_csv_file, index=False)
